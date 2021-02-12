@@ -19,7 +19,7 @@ const Tabs = (topics) => {
   const topicsEl = document.createElement('div')
   topicsEl.className = 'topics'
   const tabs = topics.map(topic => {
-    const tab = document.createElement('tab')
+    const tab = document.createElement('div')
     tab.className = 'tab'
     tab.textContent = topic
     return tab
@@ -41,7 +41,7 @@ const tabsAppender = (selector) => {
   axios.get(`https://lambda-times-api.herokuapp.com/topics`)
     .then(res => {
       document.querySelector(selector)
-        .appendChild(Tabs(res.data.topics))
+        .appendChild(Tabs([...res.data.topics, 'all']))
     })
     .catch(err => {
       console.log(err)
